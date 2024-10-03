@@ -3,6 +3,7 @@
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +25,10 @@ Route::resource('locations', LocationController::class)
     ->middleware(['auth', 'verified']);
 
 Route::resource('owners', OwnerController::class)
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
+Route::resource('vehicles', VehicleController::class)
     ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
