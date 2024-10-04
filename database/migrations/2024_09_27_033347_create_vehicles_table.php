@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
+            $table->string('licensePlate');
+            $table->string('model');
+            $table->string('year');
+            $table->string('status');
+            $table->foreignId('owner_id')->cascadeOnDelete();
+            $table->foreignId('location_id')->cascadeOnDelete();
             $table->timestamps();
         });
     }
