@@ -16,6 +16,9 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{asset('assets_plugin_admin/css/base/style.css')}}" />
     <!-- End layout styles -->
@@ -37,24 +40,25 @@
           <div class="content-wrapper pb-0">
             <div class="page-header flex-wrap">
               <div class="header-left">
-                <button class="btn btn-primary mb-2 mb-md-0 mr-2"> Create new document </button>
-                <button class="btn btn-outline-primary bg-white mb-2 mb-md-0"> Import documents </button>
+                {{-- <button class="btn btn-primary mb-2 mb-md-0 mr-2"> Create new document </button>
+                <button class="btn btn-outline-primary bg-white mb-2 mb-md-0"> Import documents </button> --}}
               </div>
               <div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
-                <div class="d-flex align-items-center">
-                  <a href="#">
-                    <p class="m-0 pr-3">Dashboard</p>
-                  </a>
-                  <a class="pl-3 mr-4" href="#">
-                    <p class="m-0">ADE-00234</p>
-                  </a>
-                </div>
-                <button type="button" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
-                  <i class="mdi mdi-plus-circle"></i> Add Prodcut </button>
+                @yield('content-section')
+                {{-- <div class="d-flex align-items-center">
+                  <a>
+                    <p class="m-0 pr-3">{{ $name }}</p>
+                  </a> 
+                  <a class="pl-3 mr-4">
+                    <p class="m-0">{{ $name }}</p>
+                  </a> 
+                </div> --}}
+                @yield('content-action')
+                {{-- <button type="button" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
+                  <i class="mdi mdi-plus-circle"></i> Add Prodcut </button> --}}
               </div>
             </div>
             @yield('content_page')
-            {{-- @include('layouts.dashboard') --}}
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->

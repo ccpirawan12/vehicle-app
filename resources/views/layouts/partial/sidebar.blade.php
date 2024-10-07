@@ -7,7 +7,7 @@
           <!--change to offline or busy as needed-->
         </div>
         <div class="nav-profile-text d-flex ml-0 mb-3 flex-column">
-          <span class="font-weight-semibold mb-1 mt-2 text-center">User</span>
+          <span class="font-weight-semibold mb-1 mt-2 text-center">{{ Auth::user()->name }}</span>
           <span class="text-secondary icon-sm text-center">Super Admin</span>
         </div>
       </a>
@@ -19,20 +19,12 @@
         <img class="sidebar-brand-logomini" src="{{asset('LogoSajiraIcon.png')}}" alt="" style="width: 3rem" />
         <div class="small font-weight-light pt-1">Vehicle Management System</div>
       </a>
-      {{-- <form class="d-flex align-items-center" action="#">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <i class="input-group-text border-0 mdi mdi-magnify"></i>
-          </div>
-          <input type="text" class="form-control border-0" placeholder="Search" />
-        </div>
-      </form> --}}
     </li>
     <li class="pt-2 pb-1">
       <span class="nav-item-head">Menu</span>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{route('layouts.dashboard')}}">
+      <a class="nav-link" href="{{route('dashboard')}}">
         <i class="mdi mdi-compass-outline menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
@@ -46,16 +38,30 @@
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="pages/ui-features/buttons.html">Data Armada</a>
+            <a class="nav-link" href="{{route('branches.index')}}">Branches</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/ui-features/dropdowns.html">Data Cabang</a>
+            <a class="nav-link" href="{{route('drivers.index')}}">Drivers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/ui-features/typography.html">Data Supir</a>
+            <a class="nav-link" href="{{route('vehicles.index')}}">Vehicles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('owners.index')}}">Vehicle Owner</a>
           </li>
         </ul>
       </div>
+    </li>
+    <li class="nav-item"> 
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <a class="nav-link" href="route('logout')" 
+            onclick="event.preventDefault();
+                this.closest('form').submit();">
+          <i class="mdi mdi-logout menu-icon text-danger"></i>
+          <span class="menu-title">Sign Out</span>
+        </a>
+      </form>
     </li>
     <!-- Other Sidebar Elements from Template -->
     <!-- <li class="nav-item">

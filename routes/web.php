@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ProfileController;
@@ -10,9 +12,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/dashboard', function () {
+//     return view('layouts.dashboard');
+// })->middleware(['auth', 'verified'])->name('layouts.dashboard');
+
 Route::get('/dashboard', function () {
-    return view('layouts.dashboard');
-})->middleware(['auth', 'verified'])->name('layouts.dashboard');
+    return view('dashboard', ['name'=>'Dashboard']);
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('branches', BranchController::class);
+Route::resource('drivers', DriverController::class);
+// Route::resource('owners', OwnerController::class);
+// Route::resource('vehicles', VehicleController::class);
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

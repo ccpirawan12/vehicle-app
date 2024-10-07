@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@section('title', 'dashboard')
+@section('content-header', 'Dashboard')
+@section('content-action')
+@endsection
+
 @section('content_page')
 
 <!-- first row starts here -->
@@ -44,19 +49,6 @@
       </div>
     </div>
   </div>
-  <div class="col-xl-3 stretch-card grid-margin">
-    <div class="card card-img">
-      <div class="card-body d-flex align-items-center">
-        <div class="text-white">
-          <h1 class="font-20 font-weight-semibold mb-0"> Get premium </h1>
-          <h1 class="font-20 font-weight-semibold">account!</h1>
-          <p>to optimize your selling prodcut</p>
-          <p class="font-10 font-weight-semibold"> Enjoy the advantage of premium. </p>
-          <button class="btn bg-white font-12">Get Premium</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <!-- chart row starts here -->
 <div class="row">
@@ -96,66 +88,6 @@
         <span class="text-muted font-13">Avg customers/Day</span>
         <div class="bar-chart-wrapper">
           <canvas id="barchart" height="80"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- image card row starts here -->
-<div class="row">
-  <div class="col-sm-4 stretch-card grid-margin">
-    <div class="card">
-      <div class="card-body p-0">
-        <img class="img-fluid w-100" src="{{asset('assets_plugin_admin/images/dashboard/img_1.jpg')}}" alt="" />
-      </div>
-      <div class="card-body px-3 text-dark">
-        <div class="d-flex justify-content-between">
-          <p class="text-muted font-13 mb-0">ENTIRE APARTMENT</p>
-          <i class="mdi mdi-heart-outline"></i>
-        </div>
-        <h5 class="font-weight-semibold"> Cosy Studio flat in London </h5>
-        <div class="d-flex justify-content-between font-weight-semibold">
-          <p class="mb-0">
-            <i class="mdi mdi-star star-color pr-1"></i>4.60 (35) </p>
-          <p class="mb-0">$5,267/night</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4 stretch-card grid-margin">
-    <div class="card">
-      <div class="card-body p-0">
-        <img class="img-fluid w-100" src="{{asset('assets_plugin_admin/images/dashboard/img_2.jpg')}}" alt="" />
-      </div>
-      <div class="card-body px-3 text-dark">
-        <div class="d-flex justify-content-between">
-          <p class="text-muted font-13 mb-0">ENTIRE APARTMENT</p>
-          <i class="mdi mdi-heart-outline"></i>
-        </div>
-        <h5 class="font-weight-semibold"> Victoria Bedsit Studio Ensuite </h5>
-        <div class="d-flex justify-content-between font-weight-semibold">
-          <p class="mb-0">
-            <i class="mdi mdi-star star-color pr-1"></i>4.83 (12) </p>
-          <p class="mb-0">$6,144/night</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4 stretch-card grid-margin">
-    <div class="card">
-      <div class="card-body p-0">
-        <img class="img-fluid w-100" src="{{asset('assets_plugin_admin/images/dashboard/img_3.jpg')}}" alt="" />
-      </div>
-      <div class="card-body px-3 text-dark">
-        <div class="d-flex justify-content-between">
-          <p class="text-muted font-13 mb-0">ENTIRE APARTMENT</p>
-          <i class="mdi mdi-heart-outline"></i>
-        </div>
-        <h5 class="font-weight-semibold">Fabulous Huge Room</h5>
-        <div class="d-flex justify-content-between font-weight-semibold">
-          <p class="mb-0">
-            <i class="mdi mdi-star star-color pr-1"></i>3.83 (15) </p>
-          <p class="mb-0">$5,267/night</p>
         </div>
       </div>
     </div>

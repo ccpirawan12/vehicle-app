@@ -4,7 +4,7 @@
       <span class="mdi mdi-chevron-double-left"></span>
     </button>
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-      <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{asset('assets_plugin_admin/images/logo-mini.svg')}}" alt="logo" /></a>
+      <a class="navbar-brand brand-logo-mini" href="{{route('dashboard')}}"><img src="{{asset('LogoSajiraIcon.png')}}" alt="logo" /></a>
     </div>
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
@@ -101,26 +101,8 @@
       <li class="nav-item nav-logout d-none d-md-block">
         <button class="btn btn-sm btn-danger">Trailing</button>
       </li>
-      <li class="nav-item nav-profile dropdown d-none d-md-block">
-        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-          <div class="nav-profile-text">English </div>
-        </a>
-        <div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item" href="#">
-            <i class="flag-icon flag-icon-bl mr-3"></i> French </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">
-            <i class="flag-icon flag-icon-cn mr-3"></i> Chinese </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">
-            <i class="flag-icon flag-icon-de mr-3"></i> German </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">
-            <i class="flag-icon flag-icon-ru mr-3"></i>Russian </a>
-        </div>
-      </li>
       <li class="nav-item nav-logout d-none d-lg-block">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('dashboard')}}">
           <i class="mdi mdi-home-circle"></i>
         </a>
       </li>
