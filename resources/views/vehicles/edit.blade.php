@@ -12,24 +12,25 @@
 
         <form action="{{ route('vehicles.store') }}" method="POST" class="forms-sample" >
           @csrf
+          {{-- @method('PUT') --}}
           <div class="form-group">
             <label for="licensePlate">License Plate</label>
-            <input type="text" class="form-control" id="licensePlate" placeholder="License Plate" name="licensePlate" 
-              :value="old('licensePlate')" required autofocus autocomplete="licensePlate" />
+            <input type="text" class="form-control" id="licensePlate" placeholder="{{ $vehicles->name }}" name="licensePlate" 
+              required autofocus autocomplete="licensePlate" />
           </div>
           <div class="form-group">
             <label for="model">Model</label>
-            <input type="text" class="form-control" id="model" placeholder="Model" name="model" 
+            <input type="text" class="form-control" id="model" placeholder="{{ $vehicles->model }}" name="model" 
             required autofocus autocomplete="model" />
           </div>
           <div class="form-group">
             <label for="year">Year</label>
-            <input type="number" min="1900" max="2099" step="1" value="2016" class="form-control" id="year" placeholder="Year" name="year"
+            <input type="number" min="1900" max="2099" step="1" value="2016" class="form-control" id="year" placeholder="{{ $vehicles->year }}" name="year"
             required autofocus autocomplete="year" />
           </div>
           <div class="form-group">
             <label for="status">Status</label>
-            <input type="text" class="form-control" id="status" placeholder="Status" name="status"
+            <input type="text" class="form-control" id="status" placeholder="{{ $vehicles->status }}" name="status"
             required autofocus autocomplete="status" />
           </div>
           <div class="form-group">

@@ -16,18 +16,11 @@ class VehicleController extends Controller
      */
     public function index(): View
     {
-        // $vehicles = Vehicle::latest()->get();
-
-        // return view('masters.vehicles.index', compact('vehicles'));
-
-        // return view('masters.vehicles.index', [
-        //     'vehicles' => Vehicle::latest()->get(),
-        //     'owners' => Owner::latest()->get(),
-        //     'locations' => Location::latest()->get(),
+        // return view('vehicles.index', [
+        //     'vehicles' => Vehicle::with('owners')->latest()->get(),
         // ]);
-
-        return view('masters.vehicles.index', [
-            'vehicles' => Vehicle::with('owners')->latest()->get(),
+        return view('vehicles.index', [
+            'vehicles' => Vehicle::latest()->get()
         ]);
     }
 
@@ -36,14 +29,12 @@ class VehicleController extends Controller
      */
     public function create(): View
     {
-        // $vehicles = Vehicle::with(['owners', 'locations'])->latest()->get();
-
-        // return view('masters.vehicles.create', compact('vehicles'));
-
-        return view('masters.vehicles.create', [
-            'vehicles' => Vehicle::latest()->get(),
-            'owners' => Owner::latest()->get(),
-            'locations' => Location::latest()->get(),
+        return view('vehicles.create', [
+            'page_name'=>'Vehicles', 
+            'section_name'=>'Create',
+            // 'vehicles' => Vehicle::latest()->get(),
+            // 'owners' => Owner::latest()->get(),
+            // 'locations' => Location::latest()->get(),
         ]);
     }
 
@@ -87,7 +78,23 @@ class VehicleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // return view('vehicles.edit', [
+        //     'page_name'=>'Vehicles', 
+        //     'section_name'=>'Edit',
+        //     'vehicles' => Vehicle::latest()->get(),
+        //     'owners' => Owner::latest()->get(),
+        //     'locations' => Location::latest()->get(),
+        // ]);
+
+        $vehicles = Vehicle::findOrFail($id);
+        $owners = Owner::findOrFail($id);
+        $locations = Location::findOrFail($id);
+
+        return view('vehicles.edit',
+        [
+            'page_name'=>'Vehicle', 
+            'section_name'=>'Edit'
+        ], compact('vehicles'));
     }
 
     /**
@@ -101,8 +108,12 @@ class VehicleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id): RedirectResponse
     {
-        //
+        $vehicles = Vehicle::findOrFail($id);
+
+        $vehicles->delete();
+
+        return redirect()->route('vehicles.index');
     }
 }

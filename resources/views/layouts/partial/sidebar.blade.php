@@ -14,7 +14,6 @@
     </li>
     <li class="nav-item pt-3">
       <a class="nav-link d-block" href="index.html">
-        <!-- <img class="sidebar-brand-logo" src="{{asset('logosajEks.jpg')}}" alt="" style="width:50px;"/> -->
         <img class="sidebar-brand-logo" src="{{asset('LogoSajiraTeks.png')}}" alt="" />
         <img class="sidebar-brand-logomini" src="{{asset('LogoSajiraIcon.png')}}" alt="" style="width: 3rem" />
         <div class="small font-weight-light pt-1">Vehicle Management System</div>

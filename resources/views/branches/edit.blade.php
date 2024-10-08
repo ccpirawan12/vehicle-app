@@ -9,11 +9,12 @@
       <div class="card-body">
         <h4 class="card-title">Branch Details</h4>
         <p class="card-description">Insert branch details</p>
-        <form action="{{ route('branches.store') }}" method="POST" class="forms-sample">
+        <form action="{{ route('branches.update', $locations->id) }}" method="POST" class="forms-sample">
           @csrf
+          @method('PUT')
           <div class="form-group">
             <label for="location">Location</label>
-            <input type="text" class="form-control" id="location" name="location" placeholder="Location" 
+            <input type="text" class="form-control" id="location" name="location" placeholder="{{ $locations->location }}" 
               required autocomplete="location"/>
           </div>
           <button type="submit" class="btn btn-primary mr-2"> Submit </button>

@@ -15,24 +15,38 @@
         <table class="table table-hover">
           <thead>
             <tr>
+              <th>No.</th>
               <th>Name</th>
               <th>Contact Info</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Jacob</td>
-              <td>08123352933</td>
-              <td>
-                <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown"></button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Details</a>
-                  <div role="separator" class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Edit</a>
-                </div>
-              </td>
-            </tr>
+            @foreach ($owners as $owner)
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $owner->name }}</td>
+                  <td>{{ $owner->contactInfo }}</td>
+                  <td>
+                    {{-- <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown"></button>
+                    <div class="dropdown-menu"> --}}
+                    <div>
+                      <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                        action="{{ route('owners.destroy', $owner->id) }}" method="POST">
+                        <a href="{{ route('owners.edit', $owner->id) }}"
+                          class="btn btn-sm btn-inverse-success">
+                          <i class="mdi mdi-table-edit"></i>
+                        </a>
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-sm btn-inverse-danger" type="submit">
+                          <i class="mdi mdi-delete-forever"></i>
+                      </button>
+                      </form>
+                    </div>
+                  </td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

@@ -11,7 +11,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        return view('drivers.index', ['name'=>'Drivers']);
+        return view('drivers.index', ['page_name'=>'Drivers']);
     }
 
     /**
@@ -19,7 +19,7 @@ class DriverController extends Controller
      */
     public function create()
     {
-        return view('drivers.create', ['name'=>'Drivers', 'section_name'=>'Edit']);
+        return view('drivers.create', ['page_name'=>'Drivers', 'section_name'=>'Edit']);
     }
 
     /**

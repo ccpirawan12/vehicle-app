@@ -15,16 +15,52 @@
         <table class="table table-hover">
           <thead>
             <tr>
+              <th>No.</th>
               <th>License Plate</th>
               <th>Model</th>
               <th>Year</th>
               <th>Status</th>
+              <th>Owner</th>
+              <th>Location</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Jacob</td>
+              @foreach ($vehicles as $vehicle)
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $vehicle->licensePlate }}</td>
+                  <td>{{ $vehicle->model }}</td>
+                  <td>{{ $vehicle->year }}</td>
+                  <td>{{ $vehicle->status }}</td>
+                  <td>{{ $vehicle->owner_id }}</td>
+                  <td>{{ $vehicle->location_id }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-inverse-primary dropdown-toggle" type="button" data-toggle="dropdown"></button>
+                    <div class="dropdown-menu">
+                      <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                      action="{{ route('vehicles.destroy', $vehicle->id) }}" method="POST">
+                      <a href="{{ route('vehicles.edit', $vehicle->id) }}"
+                        class="dropdown-item mdi mdi-table text-dark">
+                        Details
+                      </a>
+                      <a href="{{ route('vehicles.edit', $vehicle->id) }}"
+                        class="dropdown-item mdi mdi-table-edit text-success">
+                        Edit
+                      </a>
+                      <div role="separator" class="dropdown-divider"></div>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="dropdown-item mdi mdi-delete-forever text-danger"> Delete
+                        </button>
+                      </form>
+                    </div>
+                  </td>
+              </tr>
+          @endforeach
+              {{-- <td>Jacob</td>
               <td>Photoshop</td>
               <td>2018</td>
               <td>
@@ -62,7 +98,7 @@
               <td>
                 <label class="badge badge-success">Completed</label>
               </td>
-            </tr>
+            </tr> --}}
           </tbody>
         </table>
       </div>

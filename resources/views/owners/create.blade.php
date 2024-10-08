@@ -11,14 +11,17 @@
       <div class="card-body">
         <h4 class="card-title">Owner Details</h4>
         <p class="card-description">Insert owner details</p>
-        <form class="forms-sample">
+        <form action="{{route('owners.store')}}" method="POST" class="forms-sample">
+          @csrf
           <div class="form-group">
-            <label for="InputName1">Name</label>
-            <input type="text" class="form-control" id="InputName1" placeholder="Name" />
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" 
+              required autocomplete="name"/>
           </div>
           <div class="form-group">
-            <label for="InputContact1">Contact Info</label>
-            <input type="text" class="form-control" id="InputContact1" placeholder="Contact Info" />
+            <label for="contactInfo">Contact Info</label>
+            <input type="text" class="form-control" id="contactInfo" name="contactInfo" placeholder="Contact Info" 
+              required autocomplete="contactInfo"/>
           </div>
           <button type="submit" class="btn btn-primary mr-2"> Submit </button>
           <button class="btn btn-light">Cancel</button>

@@ -14,9 +14,9 @@ class OwnerController extends Controller
      */
     public function index(): View
     {
-        $owners = Owner::latest()->get();
-
-        return view('masters.owners.index', compact('owners'));
+        return view('owners.index', [
+            'owners' => Owner::latest()->get()
+        ]);
     }
 
     /**
@@ -24,7 +24,11 @@ class OwnerController extends Controller
      */
     public function create(): View
     {
-        return view('masters.owners.create');
+        // return view('masters.owners.create');
+        return view('owners.create', [
+            'page_name'=>'Vehicle Owner', 
+            'section_name'=>'Create'
+        ]);
     }
 
     /**
@@ -60,7 +64,11 @@ class OwnerController extends Controller
     {
         $owners = Owner::findOrFail($id);
 
-        return view('masters.owners.edit', compact('owners'));
+        return view('owners.edit',
+            [
+                'page_name'=>'Vehicle Owner', 
+                'section_name'=>'Edit'
+            ], compact('owners'));
     }
 
     /**

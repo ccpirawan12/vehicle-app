@@ -14,9 +14,9 @@ class LocationController extends Controller
      */
     public function index(): View
     {
-        $locations = Location::latest()->get();
-
-        return view('masters.locations.index', compact('locations'));
+        return view('branches.index', [
+            'locations' => Location::latest()->get()
+        ]);
     }
 
     /**
@@ -24,7 +24,10 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('masters.locations.create');
+        return view('branches.create', [
+            'page_name'=>'Branch', 
+            'section_name'=>'Create
+        ']);
     }
 
     /**
@@ -33,14 +36,14 @@ class LocationController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'location' => 'required|min:5',
+            'location' => 'required|min:4',
         ]);
 
         Location::create([
             'location' => $request->location,
         ]);
 
-        return redirect()->route('locations.index');
+        return redirect()->route('branches.index');
     }
 
     /**
@@ -58,7 +61,11 @@ class LocationController extends Controller
     {
         $locations = Location::findOrFail($id);
 
-        return view('masters.locations.edit', compact('locations'));
+        return view('branches.edit', [
+            'page_name'=>'Location', 
+            'section_name'=>'Edit'
+        ],
+        compact('locations'));
     }
 
     /**
@@ -67,7 +74,7 @@ class LocationController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $request->validate([
-            'location' => 'required|min:5',
+            'location' => 'required|min:4',
         ]);
 
         $locations = Location::findOrFail($id);
@@ -76,7 +83,7 @@ class LocationController extends Controller
             'location' => $request->location,
         ]);
 
-        return redirect()->route('locations.index');
+        return redirect()->route('branches.index');
     }
 
     /**
@@ -88,6 +95,6 @@ class LocationController extends Controller
 
         $locations->delete();
 
-        return redirect()->route('locations.index');
+        return redirect()->route('branches.index');
     }
 }

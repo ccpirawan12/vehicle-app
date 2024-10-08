@@ -30,11 +30,14 @@
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                             action="{{ route('locations.destroy', $location->id) }}" method="POST">
                                             <a href="{{ route('locations.edit', $location->id) }}"
-                                                class="py-2 px-4 bg-blue-700 text-white font-semibold text-xs rounded-lg">EDIT</a>
+                                                class="btn btn-sm btn-inverse-success">
+                                                <i class="mdi mdi-table-edit" ></i>
+                                            </a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit"
-                                                class="py-2 px-4 bg-red-700 text-white font-semibold text-xs rounded-lg">HAPUS</button>
+                                            <button class="btn btn-sm btn-inverse-danger" type="submit">
+                                            <i class="mdi mdi-delete-forever" ></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>

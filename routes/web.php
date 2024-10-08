@@ -20,27 +20,27 @@ Route::get('/dashboard', function () {
     return view('dashboard', ['name'=>'Dashboard']);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('branches', BranchController::class);
+// Route::resource('branches', BranchController::class);
 Route::resource('drivers', DriverController::class);
 // Route::resource('owners', OwnerController::class);
 // Route::resource('vehicles', VehicleController::class);
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-Route::resource('locations', LocationController::class)
-    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
-    ->middleware(['auth', 'verified']);
+Route::resource('branches', LocationController::class)
+->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
 
 Route::resource('owners', OwnerController::class)
-    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
-    ->middleware(['auth', 'verified']);
+->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
 
 Route::resource('vehicles', VehicleController::class)
-    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
-    ->middleware(['auth', 'verified']);
+->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 require __DIR__.'/auth.php';

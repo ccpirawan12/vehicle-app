@@ -1,10 +1,18 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Vehicles') }}
         </h2>
-    </x-slot>
-
+    </x-slot> --}}
+    @extends('layouts.app')
+    @section('title', 'dashboard')
+    @section('content-header', 'Dashboard')
+    @section('content-action')
+    <a href="{{route('vehicles.create')}}"class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
+      <i class="mdi mdi-plus-circle"></i>Add Data</a>
+    @endsection
+    
+    @section('content_page')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -55,4 +63,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
+{{-- </x-app-layout> --}}
