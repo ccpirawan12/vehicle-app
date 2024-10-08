@@ -34,14 +34,14 @@
                   <td>{{ $vehicle->model }}</td>
                   <td>{{ $vehicle->year }}</td>
                   <td>{{ $vehicle->status }}</td>
-                  <td>{{ $vehicle->owner_id }}</td>
-                  <td>{{ $vehicle->location_id }}</td>
+                  <td>{{ $vehicle->owners->name }}</td>
+                  <td>{{ $vehicle->locations->location }}</td>
                   <td>
                     <button class="btn btn-sm btn-inverse-primary dropdown-toggle" type="button" data-toggle="dropdown"></button>
                     <div class="dropdown-menu">
                       <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                       action="{{ route('vehicles.destroy', $vehicle->id) }}" method="POST">
-                      <a href="{{ route('vehicles.edit', $vehicle->id) }}"
+                      <a href="{{ route('vehicles.show', $vehicle->id) }}"
                         class="dropdown-item mdi mdi-table text-dark">
                         Details
                       </a>

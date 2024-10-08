@@ -34,7 +34,7 @@ Route::resource('owners', OwnerController::class)
 ->middleware(['auth', 'verified']);
 
 Route::resource('vehicles', VehicleController::class)
-->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+->only(['index', 'create', 'store', 'edit', 'update', 'destroy', 'show'])
 ->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Models\Owner;
 use App\Models\Vehicle;
+use App\Models\VehicleSpecification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -19,8 +20,9 @@ class VehicleController extends Controller
         // return view('vehicles.index', [
         //     'vehicles' => Vehicle::with('owners')->latest()->get(),
         // ]);
+        $vehicle    = Vehicle::with("owners","locations")->latest()->get();
         return view('vehicles.index', [
-            'vehicles' => Vehicle::latest()->get()
+            'vehicles' => $vehicle
         ]);
     }
 
@@ -32,9 +34,9 @@ class VehicleController extends Controller
         return view('vehicles.create', [
             'page_name'=>'Vehicles', 
             'section_name'=>'Create',
-            // 'vehicles' => Vehicle::latest()->get(),
-            // 'owners' => Owner::latest()->get(),
-            // 'locations' => Location::latest()->get(),
+            'vehicles' => Vehicle::latest()->get(),
+            'owners' => Owner::latest()->get(),
+            'locations' => Location::latest()->get(),
         ]);
     }
 
@@ -53,13 +55,24 @@ class VehicleController extends Controller
             'location_id' => 'required',
         ]);
 
-        Vehicle::create([
+        // dd($request->all());
+
+        $vehicle = Vehicle::create([
             'licensePlate' => $request->licensePlate,
             'model' => $request->model,
             'year' => $request->year,
             'status' => $request->status,
             'owner_id' => $request->owner_id,
             'location_id' => $request->location_id,
+        ]);
+
+        VehicleSpecification::create([
+            'vehicleId' => $vehicle->id,
+            'licenseName' => $request->licenseName,
+            'type' => $request->type,
+            'brand' => $request->brand,
+            'chassisNumber' => $request->chassisNumber,
+            'engineNumber' => $request->engineNumber,
         ]);
 
         return redirect()->route('vehicles.index');
@@ -70,7 +83,15 @@ class VehicleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $vehicle = Vehicle::find($id);
+        $owners = Owner::all();
+        $locations = Location::all();
+        $vehicle_specifications = VehicleSpecification::where("vehicleId",$vehicle->id)->first();
+        return view('vehicles.details',
+        [
+            'page_name'=>'Vehicle', 
+            'section_name'=>'Details'
+        ], compact('vehicle', 'owners', 'locations', 'vehicle_specifications'));
     }
 
     /**
@@ -78,31 +99,52 @@ class VehicleController extends Controller
      */
     public function edit(string $id)
     {
-        // return view('vehicles.edit', [
-        //     'page_name'=>'Vehicles', 
-        //     'section_name'=>'Edit',
-        //     'vehicles' => Vehicle::latest()->get(),
-        //     'owners' => Owner::latest()->get(),
-        //     'locations' => Location::latest()->get(),
-        // ]);
-
-        $vehicles = Vehicle::findOrFail($id);
-        $owners = Owner::findOrFail($id);
-        $locations = Location::findOrFail($id);
-
+        $vehicle = Vehicle::find($id);
+        $owners = Owner::all();
+        $locations = Location::all();
+        $vehicle_specifications = VehicleSpecification::where("vehicleId",$vehicle->id)->first();
         return view('vehicles.edit',
         [
             'page_name'=>'Vehicle', 
             'section_name'=>'Edit'
-        ], compact('vehicles'));
+        ], compact('vehicle', 'owners', 'locations', 'vehicle_specifications'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'licensePlate' => 'required|min:5',
+            'model' => 'required|min:3',
+            'year' => 'required|min:4',
+            'status' => 'required|min:4',
+            'owner_id' => 'required',
+            'location_id' => 'required',
+        ]);
+
+        $vehicle    = Vehicle::find($id);
+        $vehicle->update([
+            'licensePlate' => $request->licensePlate,
+            'model' => $request->model,
+            'year' => $request->year,
+            'status' => $request->status,
+            'owner_id' => $request->owner_id,
+            'location_id' => $request->location_id,
+        ]);
+
+        $vehicle_specifications = VehicleSpecification::where("vehicleId",$vehicle->id)->first();
+
+        $vehicle_specifications->update([
+            'licenseName' => $request->licenseName,
+            'type' => $request->type,
+            'brand' => $request->brand,
+            'chassisNumber' => $request->chassisNumber,
+            'engineNumber' => $request->engineNumber,
+        ]);
+
+        return redirect()->route('vehicles.index');
     }
 
     /**
@@ -110,9 +152,10 @@ class VehicleController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        $vehicles = Vehicle::findOrFail($id);
+        $vehicle = Vehicle::findOrFail($id);
+        $vehicle->delete();
 
-        $vehicles->delete();
+        $vehicle_specifications     = VehicleSpecification::where("vehicleId",$vehicle->id)->delete();
 
         return redirect()->route('vehicles.index');
     }

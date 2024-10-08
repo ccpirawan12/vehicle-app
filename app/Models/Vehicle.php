@@ -21,11 +21,16 @@ class Vehicle extends Model
 
     public function owners(): BelongsTo
     {
-        return $this->belongsTo(Owner::class);
+        return $this->belongsTo(Owner::class,"owner_id");
     }
 
     public function locations(): BelongsTo
     {
-        return $this->belongsTo(Location::class);
+        return $this->belongsTo(Location::class,"location_id");
+    }
+
+    public function vehicle_specifications(): HasOne
+    {
+        return $this->hasOne(VehicleSpecification::class);
     }
 }
