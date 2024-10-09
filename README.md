@@ -9,6 +9,8 @@
 
 ## How to Run the Project
 
+You have to clone the project first
+
 -   To clone project you can open terminal in your desired project folder, then use these command:
 
 ```
@@ -21,6 +23,11 @@ git clone https://github.com/ccpirawan12/vehicle-app.git
 git pull
 git checkout
 ```
+
+Next, You should configure the project:
+
+-   Create new `.env` file in project root directory
+-   Copy all the lines in `.env.example`, then paste in `.env`
 
 -   Next, set up the project:
 
@@ -40,12 +47,6 @@ npm install
 
 ```
 npm run dev
-```
-
-OR
-
-```
-php artisan serve
 ```
 
 ## License

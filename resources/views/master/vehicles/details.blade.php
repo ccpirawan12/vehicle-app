@@ -9,7 +9,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Vehicle Details</h4>
-          <p class="card-description">Insert vehicle details</p>
+          <p class="card-description">Detailed vehicle data and specifications</p>
   
           <div class="forms-sample" >
             <div class="form-group">

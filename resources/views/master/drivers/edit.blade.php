@@ -7,8 +7,8 @@
 @section('content_page')
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Driver Details</h4>
-        <p class="card-description">Insert driver details</p>
+        <h4 class="card-title">Driver Details Edit</h4>
+        <p class="card-description">Insert new driver details</p>
         <form action="{{ route('drivers.update', $driver->id) }}" method="POST" class="forms-sample">
           @csrf
           @method('PUT')
@@ -39,10 +39,10 @@
             </select>
           </div>
           <button type="submit" class="btn btn-primary mr-2"> Submit </button>
-          <button class="btn btn-light">Cancel</button>
+          <button class="btn btn-light">
+            <a href="{{ route('drivers.index') }}" class="text-dark">Cancel</a>
+          </button>
         </form>
       </div>
     </div>
-  {{-- </div>
-</div> --}}
   @endsection

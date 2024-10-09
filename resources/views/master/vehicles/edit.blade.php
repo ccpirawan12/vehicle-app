@@ -11,8 +11,8 @@
       @method('PUT')
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Vehicle Details</h4>
-          <p class="card-description">Insert vehicle details</p>
+          <h4 class="card-title">Vehicle Details Edit</h4>
+          <p class="card-description">Insert new vehicle details</p>
   
           <div class="forms-sample" >
             <div class="form-group">
@@ -58,8 +58,8 @@
       </div>
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Vehicle Spesification</h4>
-          <p class="card-description">Insert vehicle details</p>
+          <h4 class="card-title">Vehicle Spesification Edit</h4>
+          <p class="card-description">Insert new vehicle specifications</p>
           <div class="forms-sample">
             <div class="form-group">
               <label for="licenseName">License Name</label>
@@ -85,7 +85,9 @@
         </div>
         <div class="card-body">
           <button type="submit" class="btn btn-primary mr-2"> Submit </button>
-          <button class="btn btn-light">Cancel</button>
+          <button class="btn btn-light">
+            <a href="{{ route('vehicles.index') }}" class="text-dark">Cancel</a>
+          </button>
         </div>
       </div>
     </form>

@@ -18,7 +18,7 @@ class VehicleController extends Controller
     public function index(): View
     {
         $vehicle    = Vehicle::with("owners","locations")->latest()->get();
-        return view('vehicles.index', [
+        return view('master.vehicles.index', [
             'vehicles' => $vehicle
         ]);
     }
@@ -28,7 +28,7 @@ class VehicleController extends Controller
      */
     public function create(): View
     {
-        return view('vehicles.create', [
+        return view('master.vehicles.create', [
             'page_name'=>'Vehicles', 
             'section_name'=>'Create',
             'vehicles' => Vehicle::latest()->get(),
@@ -84,7 +84,7 @@ class VehicleController extends Controller
         $owners = Owner::all();
         $locations = Location::all();
         $vehicle_specifications = VehicleSpecification::where("vehicleId",$vehicle->id)->first();
-        return view('vehicles.details',
+        return view('master.vehicles.details',
         [
             'page_name'=>'Vehicle', 
             'section_name'=>'Details'
@@ -100,7 +100,7 @@ class VehicleController extends Controller
         $owners = Owner::all();
         $locations = Location::all();
         $vehicle_specifications = VehicleSpecification::where("vehicleId",$vehicle->id)->first();
-        return view('vehicles.edit',
+        return view('master.vehicles.edit',
         [
             'page_name'=>'Vehicle', 
             'section_name'=>'Edit'

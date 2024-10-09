@@ -17,7 +17,7 @@ class DriverController extends Controller
     public function index()
     {
         $driver    = Driver::with("users","vehicles")->latest()->get();
-        return view('drivers.index', [
+        return view('master.drivers.index', [
             'drivers' => $driver
         ]);
     }
@@ -27,7 +27,7 @@ class DriverController extends Controller
      */
     public function create(): View
     {
-        return view('drivers.create', [
+        return view('master.drivers.create', [
             'page_name'=>'Drivers',
             'section_name'=>'Edit',
             'drivers' => Driver::latest()->get(),
@@ -78,7 +78,7 @@ class DriverController extends Controller
         $driver = Driver::find($id);
         $user = User::all();
         $vehicle = Vehicle::all();
-        return view('drivers.edit',
+        return view('master.drivers.edit',
         [
             'page_name'=>'Driver', 
             'section_name'=>'Edit'

@@ -5,12 +5,10 @@
   @include('layouts.partial.navbar_edit')
 @endsection
 @section('content_page')
-{{-- <div class="row">
-  <div class="col-md-6 grid-margin stretch-card"> --}}
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Driver Details</h4>
-        <p class="card-description">Insert driver details</p>
+        <h4 class="card-title">Create New Driver</h4>
+        <p class="card-description">Insert new driver details</p>
         <form action="{{ route('drivers.store') }}" method="POST" class="forms-sample">
           @csrf
           <div class="form-group">
@@ -40,7 +38,9 @@
             </select>
           </div>
           <button type="submit" class="btn btn-primary mr-2"> Submit </button>
-          <button class="btn btn-light">Cancel</button>
+          <button class="btn btn-light">
+            <a href="{{ route('drivers.index') }}" class="text-dark">Cancel</a>
+          </button>
         </form>
       </div>
     </div>
