@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Vehicle extends Model
 {
@@ -32,5 +34,10 @@ class Vehicle extends Model
     public function vehicle_specifications(): HasOne
     {
         return $this->hasOne(VehicleSpecification::class);
+    }
+
+    public function drivers(): HasMany
+    {
+        return $this->hasMany(Driver::class);
     }
 }

@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @section('title', 'dashboard')
 @section('content-header', 'Dashboard')
+@if(\Auth::user()->role == "superadmin")
 @section('content-action')
 <a href="{{route('branches.create')}}"class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
   <i class="mdi mdi-plus-circle"></i>Add Data</a>
 @endsection
+@endif
 
 @section('content_page')
 <div class="card">
@@ -17,7 +19,9 @@
             <tr>
               <th>No.</th>
               <th>Location</th>
+              @if(\Auth::user()->role == "superadmin")
               <th>Action</th>
+              @endif
             </tr>
           </thead>
           <tbody>
@@ -25,6 +29,7 @@
               <tr>
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $location->location }}</td>
+                  @if(\Auth::user()->role == "superadmin")
                   <td>
                     <div>
                       <form onsubmit="return confirm('Apakah Anda Yakin ?');"
@@ -41,6 +46,7 @@
                       </form>
                     </div>
                   </td>
+                  @endif
               </tr>
           @endforeach
           </tbody>

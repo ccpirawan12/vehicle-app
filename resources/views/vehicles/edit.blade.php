@@ -38,10 +38,10 @@
             <div class="form-group">
               <label for="owner_id">Owner</label>
               <select id="owner_id" type="text" name="owner_id"
-                  class="form-control">
-                  @foreach ($owners as $item)
-                      <option value="{{ $item->id }}" {{ $item->id == $vehicle->owner_id ? "selected" : "" }} >{{ $item->name }}</option>
-                  @endforeach
+                class="form-control">
+                @foreach ($owners as $item)
+                    <option value="{{ $item->id }}" {{ $item->id == $vehicle->owner_id ? "selected" : "" }} >{{ $item->name }}</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">

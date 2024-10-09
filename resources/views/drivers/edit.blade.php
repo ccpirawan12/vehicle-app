@@ -5,37 +5,36 @@
   @include('layouts.partial.navbar_edit')
 @endsection
 @section('content_page')
-{{-- <div class="row">
-  <div class="col-md-6 grid-margin stretch-card"> --}}
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Driver Details</h4>
         <p class="card-description">Insert driver details</p>
-        <form action="{{ route('drivers.store') }}" method="POST" class="forms-sample">
+        <form action="{{ route('drivers.update', $driver->id) }}" method="POST" class="forms-sample">
           @csrf
+          @method('PUT')
           <div class="form-group">
             <label for="userId">User</label>
             <select id="userId" type="text" name="userId"
                 class="form-control">
-                @foreach ($users as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                @foreach ($user as $item)
+                    <option value="{{ $item->id }}" {{ $item->id == $driver->userId ? "selected" : "" }}>{{ $item->name }}</option>
                 @endforeach
             </select>
           </div>
           <div class="form-group">
             <label for="licenseNumber">License Number</label>
-            <input type="text" class="form-control" id="licenseNumber" name="licenseNumber" placeholder="License Number" />
+            <input type="text" class="form-control" id="licenseNumber" name="licenseNumber" placeholder="License Number" value="{{ $driver->licenseNumber }}"/>
           </div>
           <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" />
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" value="{{ $driver->phone }}"/>
           </div>
           <div class="form-group">
             <label for="vehicleId">Vehicle</label>
             <select id="vehicleId" type="text" name="vehicleId"
                 class="form-control">
-                @foreach ($vehicles as $item)
-                    <option value="{{ $item->id }}">{{ $item->licensePlate }}</option>
+                @foreach ($vehicle as $item)
+                    <option value="{{ $item->id }}" {{ $item->id == $driver->userId ? "selected" : "" }}>{{ $item->licensePlate }}</option>
                 @endforeach
             </select>
           </div>

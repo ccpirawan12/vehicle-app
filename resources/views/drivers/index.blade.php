@@ -15,26 +15,45 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>User ID</th>
+              <th>No.</th>
+              <th>User</th>
               <th>License Number</th>
               <th>Phone</th>
+              <th>Vehicle</th>
+              @if(\Auth::user()->role == "superadmin")
               <th>Action</th>
+              @endif
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Jacob</td>
-              <td>2018</td>
-              <td>08123352933</td>
+            @foreach ($drivers as $driver)
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $driver->users->name }}</td>
+              <td>{{ $driver->licenseNumber }}</td>
+              <td>{{ $driver->phone }}</td>
+              {{-- <td>{{ $driver->vehicles->licensePlate }}</td> --}}
+              <td>{{ $driver->vehicleId }}</td>
+              @if(\Auth::user()->role == "superadmin")
               <td>
-                <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown"></button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Details</a>
-                  <div role="separator" class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Edit</a>
+                <div>
+                  <form onsubmit="return confirm('Apakah Anda Yakin?');"
+                    action="{{ route('drivers.destroy', $driver->id) }}" method="POST">
+                    <a href="{{ route('drivers.edit', $driver->id) }}"
+                      class="btn btn-sm btn-inverse-success">
+                      <i class="mdi mdi-table-edit"></i>
+                    </a>
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-sm btn-inverse-danger" type="submit">
+                      <i class="mdi mdi-delete-forever"></i>
+                  </button>
+                  </form>
                 </div>
               </td>
+              @endif
             </tr>
+          @endforeach
           </tbody>
         </table>
       </div>

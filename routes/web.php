@@ -12,18 +12,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('layouts.dashboard');
-// })->middleware(['auth', 'verified'])->name('layouts.dashboard');
-
 Route::get('/dashboard', function () {
     return view('dashboard', ['name'=>'Dashboard']);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::resource('branches', BranchController::class);
-Route::resource('drivers', DriverController::class);
-// Route::resource('owners', OwnerController::class);
-// Route::resource('vehicles', VehicleController::class);
+Route::resource('drivers', DriverController::class)
+->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
 
 Route::resource('branches', LocationController::class)
 ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])

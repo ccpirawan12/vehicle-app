@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @section('title', 'dashboard')
 @section('content-header', 'Dashboard')
+@if(\Auth::user()->role == "superadmin")
 @section('content-action')
 <a href="{{route('owners.create')}}"class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
   <i class="mdi mdi-plus-circle"></i>Add Data</a>
 @endsection
+@endif
 
 @section('content_page')
 <div class="card">
@@ -18,7 +20,9 @@
               <th>No.</th>
               <th>Name</th>
               <th>Contact Info</th>
+              @if(\Auth::user()->role == "superadmin")
               <th>Action</th>
+              @endif
             </tr>
           </thead>
           <tbody>
@@ -27,11 +31,10 @@
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $owner->name }}</td>
                   <td>{{ $owner->contactInfo }}</td>
+                  @if(\Auth::user()->role == "superadmin")
                   <td>
-                    {{-- <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown"></button>
-                    <div class="dropdown-menu"> --}}
                     <div>
-                      <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                      <form onsubmit="return confirm('Apakah Anda Yakin?');"
                         action="{{ route('owners.destroy', $owner->id) }}" method="POST">
                         <a href="{{ route('owners.edit', $owner->id) }}"
                           class="btn btn-sm btn-inverse-success">
@@ -45,6 +48,7 @@
                       </form>
                     </div>
                   </td>
+                  @endif
               </tr>
             @endforeach
           </tbody>
