@@ -7,7 +7,7 @@
       <a class="navbar-brand brand-logo-mini" href="{{route('dashboard')}}"><img src="{{asset('LogoSajiraIcon.png')}}" alt="logo" /></a>
     </div>
     <ul class="navbar-nav">
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
           <i class="mdi mdi-email-outline"></i>
         </a>
@@ -92,14 +92,18 @@
           <div class="dropdown-divider"></div>
           <h6 class="p-3 font-13 mb-0 text-primary text-center">View all notifications</h6>
         </div>
-      </li>
+      </li> --}}
     </ul>
     <ul class="navbar-nav navbar-nav-right">
-      <li class="nav-item nav-logout d-none d-md-block mr-3">
-        <a class="nav-link" href="#">Status</a>
+      <li class="nav-item nav-logout d-none d-md-block mr-1">
+        <a class="nav-link" >{{ Auth::user()->name }}</a>
       </li>
       <li class="nav-item nav-logout d-none d-md-block">
-        <button class="btn btn-sm btn-danger">Trailing</button>
+        @if(\Auth::user()->role == "superadmin")
+        <button class="btn btn-sm btn-danger">{{ Auth::user()->role }}</button>       
+        @else
+        <button class="btn btn-sm btn-success">{{ Auth::user()->role }}</button>       
+        @endif
       </li>
       <li class="nav-item nav-logout d-none d-lg-block">
         <a class="nav-link" href="{{route('dashboard')}}">

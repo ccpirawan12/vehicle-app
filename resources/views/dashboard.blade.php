@@ -8,7 +8,68 @@
 
 <!-- first row starts here -->
 <div class="row">
-  <div class="col-xl-9 stretch-card grid-margin">
+  <div class="col stretch-card grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex border-bottom mb-4 pb-2">
+          <div class="hexagon">
+            <div class="hex-mid hexagon-warning">
+              <i class="mdi mdi-clock-outline"></i>
+            </div>
+          </div>
+          <div class="pl-4">
+            <h4 class="font-weight-bold text-warning mb-0"> 12.45 </h4>
+            <h6 class="text-muted">Schedule Meeting</h6>
+          </div>
+        </div>
+        <div class="d-flex border-bottom mb-4 pb-2">
+          <div class="hexagon">
+            <div class="hex-mid hexagon-danger">
+              <i class="mdi mdi-account-outline"></i>
+            </div>
+          </div>
+          <div class="pl-4">
+            <h4 class="font-weight-bold text-danger mb-0">34568</h4>
+            <h6 class="text-muted">Profile visits</h6>
+          </div>
+        </div>
+        <div class="d-flex border-bottom mb-4 pb-2">
+          <div class="hexagon">
+            <div class="hex-mid hexagon-success">
+              <i class="mdi mdi-laptop-chromebook"></i>
+            </div>
+          </div>
+          <div class="pl-4">
+            <h4 class="font-weight-bold text-success mb-0"> 33.50% </h4>
+            <h6 class="text-muted">Bounce Rate</h6>
+          </div>
+        </div>
+        <div class="d-flex border-bottom mb-4 pb-2">
+          <div class="hexagon">
+            <div class="hex-mid hexagon-info">
+              <i class="mdi mdi-clock-outline"></i>
+            </div>
+          </div>
+          <div class="pl-4">
+            <h4 class="font-weight-bold text-info mb-0">12.45</h4>
+            <h6 class="text-muted">Schedule Meeting</h6>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="hexagon">
+            <div class="hex-mid hexagon-primary">
+              <i class="mdi mdi-timer-sand"></i>
+            </div>
+          </div>
+          <div class="pl-4">
+            <h4 class="font-weight-bold text-primary mb-0"> 12.45 </h4>
+            <h6 class="text-muted mb-0">Browser Usage</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{-- <div class="col-xl-9 stretch-card grid-margin">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between flex-wrap">
@@ -48,7 +109,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 </div>
 <!-- chart row starts here -->
 <div class="row">

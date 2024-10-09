@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @section('title', 'dashboard')
 @section('content-header', 'Dashboard')
+@if(\Auth::user()->role == "superadmin")
 @section('content-action')
 <a href="{{route('drivers.create')}}"class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
   <i class="mdi mdi-plus-circle"></i>Add Data</a>
 @endsection
+@endif
 
 @section('content_page')
 <div class="card">

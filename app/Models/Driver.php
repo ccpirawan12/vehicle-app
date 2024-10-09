@@ -17,7 +17,7 @@ class Driver extends Model
         'phone',
         'vehicleId',
     ];
-
+    
     public function users(): BelongsTo
     {
         return $this->belongsTo(User::class,"userId");

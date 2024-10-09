@@ -8,12 +8,12 @@
         </div>
         <div class="nav-profile-text d-flex ml-0 mb-3 flex-column">
           <span class="font-weight-semibold mb-1 mt-2 text-center">{{ Auth::user()->name }}</span>
-          <span class="text-secondary icon-sm text-center">Super Admin</span>
+          <span class="text-secondary icon-sm text-center">{{ Auth::user()->position }}</span>
         </div>
       </a>
     </li>
     <li class="nav-item pt-3">
-      <a class="nav-link d-block" href="index.html">
+      <a class="nav-link d-block" href="{{ route('dashboard') }}">
         <img class="sidebar-brand-logo" src="{{asset('LogoSajiraTeks.png')}}" alt="" />
         <img class="sidebar-brand-logomini" src="{{asset('LogoSajiraIcon.png')}}" alt="" style="width: 3rem" />
         <div class="small font-weight-light pt-1">Vehicle Management System</div>
@@ -23,7 +23,7 @@
       <span class="nav-item-head">Menu</span>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{route('dashboard')}}">
+      <a class="nav-link" href="{{ route('dashboard') }}">
         <i class="mdi mdi-compass-outline menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>

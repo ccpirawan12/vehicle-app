@@ -10,28 +10,45 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', function () {
     return view('dashboard', ['name'=>'Dashboard']);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Normal User Routes
 Route::resource('drivers', DriverController::class)
-->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+->only(['index'])
 ->middleware(['auth', 'verified']);
 
 Route::resource('branches', LocationController::class)
-->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+->only(['index'])
 ->middleware(['auth', 'verified']);
 
 Route::resource('owners', OwnerController::class)
-->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+->only(['index'])
 ->middleware(['auth', 'verified']);
 
 Route::resource('vehicles', VehicleController::class)
-->only(['index', 'create', 'store', 'edit', 'update', 'destroy', 'show'])
+->only(['index'])
 ->middleware(['auth', 'verified']);
 
+// Admin Routes
+Route::resource('drivers', DriverController::class)
+->only(['create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'superadmin']);
+
+Route::resource('branches', LocationController::class)
+->only(['create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'superadmin']);
+
+Route::resource('owners', OwnerController::class)
+->only(['create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'superadmin']);
+
+Route::resource('vehicles', VehicleController::class)
+->only(['create', 'store', 'edit', 'update', 'destroy', 'show'])
+->middleware(['auth', 'superadmin']);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
