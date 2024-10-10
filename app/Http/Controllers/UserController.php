@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index', [
+        return view('admin.users.index', [
             'users' => User::latest()->get()
         ]);
     }
@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create', [
+        return view('admin.users.create', [
             'page_name'=>'User Data', 
             'section_name'=>'Create'
         ]);
@@ -69,7 +69,7 @@ class UserController extends Controller
     {
         $users = User::findOrFail($id);
 
-        return view('users.edit',
+        return view('admin.users.edit',
             [
                 'page_name'=>'User Data', 
                 'section_name'=>'Edit'

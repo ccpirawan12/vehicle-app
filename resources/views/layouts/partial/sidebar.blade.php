@@ -3,7 +3,7 @@
     <li class="nav-item nav-profile border-bottom">
       <a href="#" class="nav-link flex-column">
         <div class="nav-profile-image">
-          <img src="{{asset('assets_plugin_admin/images/faces/face1.jpg')}}" alt="profile" />
+          <img src="{{asset('LogoSajiraIcon.png')}}" alt="profile" />
           <!--change to offline or busy as needed-->
         </div>
         <div class="nav-profile-text d-flex ml-0 mb-3 flex-column">
@@ -14,8 +14,8 @@
     </li>
     <li class="nav-item pt-3">
       <a class="nav-link d-block" href="{{ route('dashboard') }}">
-        <img class="sidebar-brand-logo" src="{{asset('LogoSajiraTeks.png')}}" alt="" />
-        <img class="sidebar-brand-logomini" src="{{asset('LogoSajiraIcon.png')}}" alt="" style="width: 3rem" />
+        <img class="sidebar-brand-logo" src="{{asset('LogoSajiraTeks.png')}}" alt="Logo PT. Sajira Mahardika" />
+        <img class="sidebar-brand-logomini" src="{{asset('LogoSajiraIcon.png')}}" alt="Logo PT. Sajira Mahardika" style="width: 3rem" />
         <div class="small font-weight-light pt-1">Vehicle Management System</div>
       </a>
     </li>
