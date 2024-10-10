@@ -14,10 +14,10 @@
       <h4 class="card-title">Owners Data</h4>
       <p class="card-description"> Vehicles owner data
       </p>
-        <table class="table table-hover">
+        <table class="table table-hover" id="table-data">
           <thead>
             <tr>
-              <th>No.</th>
+              {{-- <th>No.</th> --}}
               <th>Name</th>
               <th>Contact Info</th>
               @if(\Auth::user()->role == "superadmin")
@@ -28,7 +28,7 @@
           <tbody>
             @foreach ($owners as $owner)
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                  <td>{{ $loop->iteration }}</td>
+                  {{-- <td>{{ $loop->iteration }}</td> --}}
                   <td>{{ $owner->name }}</td>
                   <td>{{ $owner->contactInfo }}</td>
                   @if(\Auth::user()->role == "superadmin")
@@ -55,4 +55,5 @@
         </table>
       </div>
     </div>
+    @include('layouts.partial.dt_script')
 @endsection

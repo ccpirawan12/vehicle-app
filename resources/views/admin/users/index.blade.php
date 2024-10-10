@@ -13,7 +13,7 @@
     <div class="card-body">
       <h4 class="card-title">User Data</h4>
       <p class="card-description"> Manage user data </p>
-        <table class="table table-hover">
+        <table class="table table-hover" id="table-data">
           <thead>
             <tr>
               <th>No.</th>
@@ -58,4 +58,5 @@
         </table>
       </div>
     </div>
+    @include('layouts.partial.dt_script')
 @endsection

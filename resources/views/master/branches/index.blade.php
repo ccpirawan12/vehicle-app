@@ -14,10 +14,10 @@
       <h4 class="card-title">Branch Data</h4>
       <p class="card-description"> Branch location data
       </p>
-        <table class="table table-hover">
+        <table class="table table-hover" id="table-data">
           <thead>
             <tr>
-              <th>No.</th>
+              {{-- <th>No.</th> --}}
               <th>Location</th>
               @if(\Auth::user()->role == "superadmin")
               <th>Action</th>
@@ -27,7 +27,7 @@
           <tbody>
             @foreach ($locations as $location)
               <tr>
-                  <td>{{ $loop->iteration }}</td>
+                  {{-- <td>{{ $loop->iteration }}</td> --}}
                   <td>{{ $location->location }}</td>
                   @if(\Auth::user()->role == "superadmin")
                   <td>
@@ -53,4 +53,5 @@
         </table>
       </div>
     </div>
+    @include('layouts.partial.dt_script')
 @endsection

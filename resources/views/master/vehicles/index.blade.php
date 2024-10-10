@@ -13,10 +13,10 @@
     <div class="card-body">
       <h4 class="card-title">Vehicle Data </h4>
       <p class="card-description"> description </p>
-        <table class="table table-hover">
+        <table class="table table-hover" id="table-data">
           <thead>
             <tr>
-              <th>No.</th>
+              {{-- <th>No.</th> --}}
               <th>License Plate</th>
               <th>Model</th>
               <th>Year</th>
@@ -31,7 +31,7 @@
           <tbody>
               @foreach ($vehicles as $vehicle)
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td>{{ $loop->iteration }}</td>
+                {{-- <td>{{ $loop->iteration }}</td> --}}
                 <td>{{ $vehicle->licensePlate }}</td>
                 <td>{{ $vehicle->model }}</td>
                 <td>{{ $vehicle->year }}</td>
@@ -68,4 +68,5 @@
         </table>
       </div>
     </div>
+    @include('layouts.partial.dt_script')
 @endsection

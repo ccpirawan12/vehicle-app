@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OwnerController;
@@ -13,11 +14,14 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware(['auth', 'verified']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard', ['name'=>'Dashboard']);
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard', ['name'=>'Dashboard']);
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Normal User Routes
+Route::get('dashboard', [DashboardController::class,"index"])
+->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::resource('drivers', DriverController::class)
 ->only(['index'])
 ->middleware(['auth', 'verified']);

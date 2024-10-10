@@ -13,6 +13,9 @@
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="{{asset('assets_plugin_admin/vendors/jquery-bar-rating/css-stars.css')}}" />
     <link rel="stylesheet" href="{{asset('assets_plugin_admin/vendors/font-awesome/css/font-awesome.min.css')}}" />
+    {{-- DataTables CSS --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{asset('custom/css/datatables.css')}}" />
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -91,6 +94,11 @@
   <!-- endinject -->
   <!-- Custom js for this page -->
   <script src="{{asset('assets_plugin_admin/js/dashboard.js')}}"></script>
-    <!-- End custom js for this page -->
+  <script src="{{asset('custom/dashboard.js')}}"></script>
+  {{-- DataTables JS --}}
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script> --}}
+  <!-- End custom js for this page -->
   </body>
 </html>

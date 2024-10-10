@@ -17,6 +17,7 @@ class DriverController extends Controller
     public function index()
     {
         $driver    = Driver::with("users","vehicles")->latest()->get();
+        // dd($driver->toArray());
         return view('master.drivers.index', [
             'drivers' => $driver
         ]);
