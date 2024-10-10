@@ -6,6 +6,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -49,6 +50,12 @@ Route::resource('owners', OwnerController::class)
 Route::resource('vehicles', VehicleController::class)
 ->only(['create', 'store', 'edit', 'update', 'destroy', 'show'])
 ->middleware(['auth', 'superadmin']);
+
+// Master Admin
+Route::resource('users', UserController::class)
+->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'superadmin']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -31,7 +31,7 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_settings-panel.html -->
-        @include('layouts.partial.settings-panel')
+        {{-- @include('layouts.partial.settings-panel') --}}
         <!-- partial -->
         <!-- partial:partials/_navbar.html -->
         @include('layouts.partial.navbar')

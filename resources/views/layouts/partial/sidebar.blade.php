@@ -51,6 +51,22 @@
         </ul>
       </div>
     </li>
+    @if(\Auth::user()->role == "superadmin")
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <i class="mdi mdi-table-large menu-icon"></i>
+        <span class="menu-title">Master Admin</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="ui-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('users.index')}}">Manage User</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    @endif
     <li class="nav-item"> 
       <form method="POST" action="{{ route('logout') }}">
         @csrf
