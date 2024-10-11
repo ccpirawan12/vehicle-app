@@ -1,0 +1,17 @@
+.header-left {
+    font-weight: bold;
+    color: #212529;
+    font-size: large;
+}
+
+.dt-container {
+    color: #212529;
+    font-size: 0.9rem;
+}
+
+div.dt-container div.dt-length select {
+    width: auto;
+    display: inline-block;
+    margin-right: 0.5em;
+    border-radius: 3.5px;
+}

@@ -51,10 +51,33 @@
         </ul>
       </div>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <i class="mdi mdi-file menu-icon"></i>
+        <span class="menu-title">Management</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="ui-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('contracts.index')}}">Contracts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('routines.index')}}">Routine Checks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('maintenances.index')}}">Maintenance</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('administrations.index')}}">Administration</a>
+          </li>
+        </ul>
+      </div>
+    </li>
     @if(\Auth::user()->role == "superadmin")
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <i class="mdi mdi-table-large menu-icon"></i>
+        <i class="mdi mdi-account-key menu-icon"></i>
         <span class="menu-title">Master Admin</span>
         <i class="menu-arrow"></i>
       </a>

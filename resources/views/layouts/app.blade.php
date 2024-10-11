@@ -13,9 +13,9 @@
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="{{asset('assets_plugin_admin/vendors/jquery-bar-rating/css-stars.css')}}" />
     <link rel="stylesheet" href="{{asset('assets_plugin_admin/vendors/font-awesome/css/font-awesome.min.css')}}" />
-    {{-- DataTables CSS --}}
+    {{-- CUSTOM CSS --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="{{asset('custom/css/datatables.css')}}" />
+    <link rel="stylesheet" href="{{asset('custom/css/styles.css')}}" />
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -43,6 +43,7 @@
           <div class="content-wrapper pb-0">
             <div class="page-header flex-wrap">
               <div class="header-left">
+                @yield('content-header')
                 {{-- <button class="btn btn-primary mb-2 mb-md-0 mr-2"> Create new document </button>
                 <button class="btn btn-outline-primary bg-white mb-2 mb-md-0"> Import documents </button> --}}
               </div>

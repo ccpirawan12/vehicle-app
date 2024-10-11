@@ -19,6 +19,7 @@ class VehicleController extends Controller
     {
         $vehicle    = Vehicle::with("owners","locations")->latest()->get();
         return view('master.vehicles.index', [
+            'page_name' => 'Vehicles',
             'vehicles' => $vehicle
         ]);
     }
@@ -29,7 +30,7 @@ class VehicleController extends Controller
     public function create(): View
     {
         return view('master.vehicles.create', [
-            'page_name'=>'Vehicles', 
+            'page_name'=>'Vehicle', 
             'section_name'=>'Create',
             'vehicles' => Vehicle::latest()->get(),
             'owners' => Owner::latest()->get(),

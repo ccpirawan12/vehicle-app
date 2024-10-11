@@ -26,6 +26,7 @@ class DashboardController extends Controller
         // dd($data_dochart2->toArray());
 
         return view('dashboard', [
+            'page_name' => 'Dashboard',
             'drivers' => $driver,
             'locations' => $location,
             'owners' => $owner,

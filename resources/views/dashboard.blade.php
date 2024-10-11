@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title', 'dashboard')
-@section('content-header', 'Dashboard')
+@section('content-header')
+  {{-- <a href="{{route('dashboard')}}">{{ $page_name }}</a> --}}
+{{-- @endsection --}}
 @section('content-action')
 @endsection
 

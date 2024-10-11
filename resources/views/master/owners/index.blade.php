@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', 'dashboard')
-@section('content-header', 'Dashboard')
+@section('title')
+@section('content-header', 'Vehicle Owners')
 @if(\Auth::user()->role == "superadmin")
 @section('content-action')
 <a href="{{route('owners.create')}}"class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">

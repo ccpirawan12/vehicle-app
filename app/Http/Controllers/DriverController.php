@@ -19,6 +19,7 @@ class DriverController extends Controller
         $driver    = Driver::with("users","vehicles")->latest()->get();
         // dd($driver->toArray());
         return view('master.drivers.index', [
+            'page_name' => 'Driver',
             'drivers' => $driver
         ]);
     }
@@ -30,7 +31,7 @@ class DriverController extends Controller
     {
         return view('master.drivers.create', [
             'page_name'=>'Drivers',
-            'section_name'=>'Edit',
+            'section_name'=>'Create',
             'drivers' => Driver::latest()->get(),
             'users' => User::latest()->get(),
             'vehicles' => Vehicle::latest()->get(),

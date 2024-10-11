@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdministrationController;
+use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\RoutineController;
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DriverController;
@@ -18,10 +22,10 @@ Route::get('/', function () {
 //     return view('dashboard', ['name'=>'Dashboard']);
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Normal User Routes
 Route::get('dashboard', [DashboardController::class,"index"])
 ->middleware(['auth', 'verified'])->name('dashboard');
 
+// Normal User Routes
 Route::resource('drivers', DriverController::class)
 ->only(['index'])
 ->middleware(['auth', 'verified']);
@@ -36,6 +40,23 @@ Route::resource('owners', OwnerController::class)
 
 Route::resource('vehicles', VehicleController::class)
 ->only(['index'])
+->middleware(['auth', 'verified']);
+
+// Management Routes
+Route::resource('contracts', ContractController::class)
+->only(['index','create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
+
+Route::resource('routines', RoutineController::class)
+->only(['index','create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
+
+Route::resource('maintenances', MaintenanceController::class)
+->only(['index','create', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
+
+Route::resource('administrations', AdministrationController::class)
+->only(['index','create', 'store', 'edit', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
 // Admin Routes

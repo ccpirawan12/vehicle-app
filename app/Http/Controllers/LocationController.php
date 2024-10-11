@@ -15,6 +15,7 @@ class LocationController extends Controller
     public function index(): View
     {
         return view('master.branches.index', [
+            'page_name' => 'Branch',
             'locations' => Location::latest()->get()
         ]);
     }
@@ -62,7 +63,7 @@ class LocationController extends Controller
         $locations = Location::findOrFail($id);
 
         return view('master.branches.edit', [
-            'page_name'=>'Location', 
+            'page_name'=>'Branch', 
             'section_name'=>'Edit'
         ],
         compact('locations'));

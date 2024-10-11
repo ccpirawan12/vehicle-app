@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', 'dashboard')
-@section('content-header', 'Dashboard')
+@section('title')
+@section('content-header')
 @section('content-section')
   @include('layouts.partial.navbar_edit')
 @endsection

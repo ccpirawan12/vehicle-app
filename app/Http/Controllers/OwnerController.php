@@ -15,6 +15,7 @@ class OwnerController extends Controller
     public function index(): View
     {
         return view('master.owners.index', [
+            'page_name' => 'Vehicle Owner',
             'owners' => Owner::latest()->get()
         ]);
     }
