@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Owner;
+use App\Models\Vehicle;
+use App\Models\VehicleSpecification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -37,8 +39,8 @@ class OwnerController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required|min:5',
-            'contactInfo' => 'required|min:5'
+            'name' => 'required',
+            'contactInfo' => 'required'
         ]);
 
         Owner::create([
@@ -77,8 +79,8 @@ class OwnerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|min:5',
-            'contactInfo' => 'required|min:5'
+            'name' => 'required',
+            'contactInfo' => 'required'
         ]);
 
         $owners = Owner::findOrFail($id);
@@ -96,9 +98,15 @@ class OwnerController extends Controller
      */
     public function destroy($id)
     {
-        $owners = Owner::findOrFail($id);
+        $owner = Owner::findOrFail($id);
+        $owner_id   = $owner->id;
+        $vehicle     = Vehicle::where("owner_id",$owner_id)->first();
+        $vehicle_id   = $vehicle->id;
 
-        $owners->delete();
+        $owner->delete();
+
+        $vehicle     = $vehicle->delete();
+        $vehicle_specifications     = VehicleSpecification::where("vehicleId",$vehicle_id)->delete();
 
         return redirect()->route('owners.index');
     }

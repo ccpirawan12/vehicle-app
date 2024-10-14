@@ -16,6 +16,6 @@ class Location extends Model
 
     public function vehicles(): HasMany
     {
-        return $this->hasMany(Vehicle::class);
+        return $this->hasMany(Vehicle::class)->onDelete('cascade');
     }
 }

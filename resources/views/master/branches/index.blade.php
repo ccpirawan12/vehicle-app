@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title')
 @section('content-header', 'Branch')
-@if(\Auth::user()->role == "superadmin")
+@if(\Auth::user()->role == ("superadmin"||"admin"))
 @section('content-action')
 <a href="{{route('branches.create')}}"class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
   <i class="mdi mdi-plus-circle"></i>Add Data</a>
@@ -19,7 +19,7 @@
             <tr>
               {{-- <th>No.</th> --}}
               <th>Location</th>
-              @if(\Auth::user()->role == "superadmin")
+              @if(\Auth::user()->role == ("superadmin"||"admin"))
               <th>Action</th>
               @endif
             </tr>
@@ -29,7 +29,7 @@
               <tr>
                   {{-- <td>{{ $loop->iteration }}</td> --}}
                   <td>{{ $location->location }}</td>
-                  @if(\Auth::user()->role == "superadmin")
+                  @if(\Auth::user()->role == ("superadmin"||"admin"))
                   <td>
                     <div>
                       <form onsubmit="return confirm('Apakah Anda Yakin ?');"

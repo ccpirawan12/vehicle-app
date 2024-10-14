@@ -55,6 +55,7 @@
         </div>
       </div>
     </div>
+    {{-- Spec --}}
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Create New Vehicle Spesification</h4>

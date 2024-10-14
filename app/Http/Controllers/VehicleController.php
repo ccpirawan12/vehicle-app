@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use App\Models\Owner;
+use App\Models\Contract;
 use App\Models\Vehicle;
+use App\Models\RoutineCheck;
 use App\Models\VehicleSpecification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,6 +20,7 @@ class VehicleController extends Controller
     public function index(): View
     {
         $vehicle    = Vehicle::with("owners","locations")->latest()->get();
+        // dd($vehicle->owner_id);
         return view('master.vehicles.index', [
             'page_name' => 'Vehicles',
             'vehicles' => $vehicle
@@ -45,10 +48,10 @@ class VehicleController extends Controller
     {
         // dd($request);
         $request->validate([
-            'licensePlate' => 'required|min:5',
-            'model' => 'required|min:3',
-            'year' => 'required|min:4',
-            'status' => 'required|min:4',
+            'licensePlate' => 'required',
+            'model' => 'required',
+            'year' => 'required',
+            'status' => 'required',
             'owner_id' => 'required',
             'location_id' => 'required',
         ]);
@@ -114,10 +117,10 @@ class VehicleController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'licensePlate' => 'required|min:5',
-            'model' => 'required|min:3',
-            'year' => 'required|min:4',
-            'status' => 'required|min:4',
+            'licensePlate' => 'required',
+            'model' => 'required',
+            'year' => 'required',
+            'status' => 'required',
             'owner_id' => 'required',
             'location_id' => 'required',
         ]);
@@ -151,9 +154,20 @@ class VehicleController extends Controller
     public function destroy($id): RedirectResponse
     {
         $vehicle = Vehicle::findOrFail($id);
+        $vehicle_id = $vehicle->id;
+        $contract = Contract::where("vehicleId",$vehicle_id)->first();
+        $routine = RoutineCheck::where("vehicleId",$vehicle_id)->first();
+
         $vehicle->delete();
 
-        $vehicle_specifications     = VehicleSpecification::where("vehicleId",$vehicle->id)->delete();
+        $vehicle_specifications     = VehicleSpecification::where("vehicleId",$vehicle_id)->delete();
+        if(!empty($contract)){
+            $contract = $contract->delete();
+        }
+        if(!empty($routine)){
+            $routine = $routine->delete();
+        }
+
 
         return redirect()->route('vehicles.index');
     }

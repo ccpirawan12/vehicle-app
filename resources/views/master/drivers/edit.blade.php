@@ -34,7 +34,7 @@
             <select id="vehicleId" type="text" name="vehicleId"
                 class="form-control">
                 @foreach ($vehicle as $item)
-                    <option value="{{ $item->id }}" {{ $item->id == $driver->userId ? "selected" : "" }}>{{ $item->licensePlate }}</option>
+                    <option value="{{ $item->id }}" {{ $item->id == $driver->vehicleId ? "selected" : "" }}>{{ $item->licensePlate }}</option>
                 @endforeach
             </select>
           </div>

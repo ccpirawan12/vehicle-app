@@ -95,7 +95,7 @@
   <!-- endinject -->
   <!-- Custom js for this page -->
   <script src="{{asset('assets_plugin_admin/js/dashboard.js')}}"></script>
-  <script src="{{asset('custom/dashboard.js')}}"></script>
+  {{-- <script src="{{asset('custom/dashboard.js')}}"></script> --}}
   {{-- DataTables JS --}}
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>

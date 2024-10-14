@@ -3,21 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class VehicleSpecification extends Model
+class Contract extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'contractDate',
+        'contractEnd',
+        'file',
+        'ownerId',
         'vehicleId',
-        'licenseName',
-        'type',
-        'brand',
-        'chassisNumber',
-        'engineNumber',
     ];
+
+    public function owners(): BelongsTo
+    {
+        return $this->belongsTo(Owner::class,"ownerId");
+    }
 
     public function vehicles(): BelongsTo
     {

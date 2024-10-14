@@ -18,68 +18,64 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware(['auth', 'verified']);
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard', ['name'=>'Dashboard']);
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('dashboard', [DashboardController::class,"index"])
 ->middleware(['auth', 'verified'])->name('dashboard');
 
-// Normal User Routes
-Route::resource('drivers', DriverController::class)
-->only(['index'])
-->middleware(['auth', 'verified']);
+// Role based routes
+Route::group(['middleware' => 'auth'], function () {
+    // Normal User Routes
+    Route::group(['middleware' => 'verified'], function () {     
+        // Master Data Routes
+        Route::resource('drivers', DriverController::class)
+            ->only(['index']);
+        Route::resource('branches', LocationController::class)
+            ->only(['index']);
+        Route::resource('owners', OwnerController::class)
+            ->only(['index']);
+        Route::resource('vehicles', VehicleController::class)
+            ->only(['index']);
+        
+        // Management Routes
+        Route::resource('contracts', ContractController::class)
+            ->only(['index']);
+        Route::resource('routines', RoutineController::class)
+            ->only(['index']);
+        Route::resource('maintenances', MaintenanceController::class)
+            ->only(['index']);
+        Route::resource('administrations', AdministrationController::class)
+            ->only(['index']);
+    });
 
-Route::resource('branches', LocationController::class)
-->only(['index'])
-->middleware(['auth', 'verified']);
+    // Admin Routes
+    Route::group(['middleware' => 'admin'], function () {
+        // Master Data Routes
+        Route::resource('drivers', DriverController::class)
+            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('branches', LocationController::class)
+            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('owners', OwnerController::class)
+            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('vehicles', VehicleController::class)
+            ->only(['create', 'store', 'edit', 'update', 'destroy', 'show']);
+        
+        //  Management Routes
+        Route::resource('contracts', ContractController::class)
+            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('routines', RoutineController::class)
+            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('maintenances', MaintenanceController::class)
+            ->only(['create', 'store', 'edit', 'update', 'destroy', 'show']);
+        Route::resource('administrations', AdministrationController::class)
+            ->only(['create', 'store', 'edit', 'update', 'destroy', 'show']);
+    });
 
-Route::resource('owners', OwnerController::class)
-->only(['index'])
-->middleware(['auth', 'verified']);
-
-Route::resource('vehicles', VehicleController::class)
-->only(['index'])
-->middleware(['auth', 'verified']);
-
-// Management Routes
-Route::resource('contracts', ContractController::class)
-->only(['index','create', 'store', 'edit', 'update', 'destroy'])
-->middleware(['auth', 'verified']);
-
-Route::resource('routines', RoutineController::class)
-->only(['index','create', 'store', 'edit', 'update', 'destroy'])
-->middleware(['auth', 'verified']);
-
-Route::resource('maintenances', MaintenanceController::class)
-->only(['index','create', 'store', 'edit', 'update', 'destroy'])
-->middleware(['auth', 'verified']);
-
-Route::resource('administrations', AdministrationController::class)
-->only(['index','create', 'store', 'edit', 'update', 'destroy'])
-->middleware(['auth', 'verified']);
-
-// Admin Routes
-Route::resource('drivers', DriverController::class)
-->only(['create', 'store', 'edit', 'update', 'destroy'])
-->middleware(['auth', 'superadmin']);
-
-Route::resource('branches', LocationController::class)
-->only(['create', 'store', 'edit', 'update', 'destroy'])
-->middleware(['auth', 'superadmin']);
-
-Route::resource('owners', OwnerController::class)
-->only(['create', 'store', 'edit', 'update', 'destroy'])
-->middleware(['auth', 'superadmin']);
-
-Route::resource('vehicles', VehicleController::class)
-->only(['create', 'store', 'edit', 'update', 'destroy', 'show'])
-->middleware(['auth', 'superadmin']);
-
-// Master Admin
-Route::resource('users', UserController::class)
-->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
-->middleware(['auth', 'superadmin']);
+    // Superadmin
+    Route::group(['middleware' => 'superadmin'], function () {
+        // Master Admin
+        Route::resource('users', UserController::class)
+        ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    });
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -16,7 +16,7 @@
       @method('PUT')
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="{{ $users->name }}"
+        <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="{{ $users->name }} "
           required autofocus autocomplete="name" />
       </div>
       <div class="form-group">
@@ -28,7 +28,8 @@
         <label for="position">Position</label>
         <select id="position" type="text" name="position"
             class="form-control">
-            <option value="{{ $users->position }}">Administrator</option>
+            <option value="{{ $users->id }}" >{{$users->position}}</option>
+            <option>Administrator</option>
             <option>Driver</option>
             <option>Manager</option>
             <option>Owner</option>
@@ -39,7 +40,8 @@
         <label for="role">Role</label>
         <select id="role" type="text" name="role"
             class="form-control">
-            <option value="{{ $users->role }}">admin</option>
+            <option value="{{ $users->id }}">{{ $users->role }}</option>
+            <option>admin</option>
             <option>superadmin</option>
             <option>user</option>
         </select>

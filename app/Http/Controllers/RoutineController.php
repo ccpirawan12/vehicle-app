@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RoutineCheck;
+use App\Models\Vehicle;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -13,31 +15,46 @@ class RoutineController extends Controller
      */
     public function index() 
     {
+        $routine    = RoutineCheck::with("vehicles")->latest()->get();
         return view('management.routines.index', [
-            'page_name' => 'Routine',
+            'routines' => $routine
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         return view('management.routines.create', [
-            'page_name'=>'routines',
+            'page_name'=>'Routine Check',
             'section_name'=>'Create',
-            // 'drivers' => Driver::latest()->get(),
-            // 'users' => User::latest()->get(),
-            // 'vehicles' => Vehicle::latest()->get(),
+            'routines' => RoutineCheck::latest()->get(),
+            'vehicles' => Vehicle::latest()->get(),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        // dd($request);
+        $request->validate([        
+            'vehicleId' => 'required',
+            'checkDate' => 'required',
+            'status' => 'required',
+        ]);
+
+        // dd($request->all());
+
+        $routine = RoutineCheck::create([
+            'vehicleId' => $request->vehicleId,
+            'checkDate' => $request->checkDate,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('routines.index');
     }
 
     /**
@@ -53,7 +70,13 @@ class RoutineController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $routine = RoutineCheck::find($id);
+        $vehicles = Vehicle::all();
+        return view('management.routines.edit',
+        [
+            'page_name'=>'Routine Check', 
+            'section_name'=>'Edit'
+        ], compact('routine', 'vehicles'));
     }
 
     /**
@@ -61,7 +84,21 @@ class RoutineController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'checkDate' => 'required',
+            'vehicleId' => 'required',
+            'status' => 'required',
+        ]);
+        
+        
+        $routine = RoutineCheck::find($id);
+        $routine->update([
+            'checkDate' => $request->checkDate,
+            'vehicleId' => $request->vehicleId,
+            'status' => $request->status,
+        ]);
+        
+        return redirect()->route('routines.index');
     }
 
     /**
@@ -69,6 +106,9 @@ class RoutineController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $routine = RoutineCheck::findOrFail($id);
+        $routine->delete();
+
+        return redirect()->route('routines.index');
     }
 }

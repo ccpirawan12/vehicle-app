@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title')
 @section('content-header', 'Vehicles')
-@if(\Auth::user()->role == "superadmin")
+@if(\Auth::user()->role == ("superadmin"||"admin"))
 @section('content-action')
 <a href="{{route('vehicles.create')}}"class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
   <i class="mdi mdi-plus-circle"></i>Add Data</a>
@@ -23,7 +23,7 @@
               <th>Status</th>
               <th>Owner</th>
               <th>Location</th>
-              @if(\Auth::user()->role == "superadmin")
+              @if(\Auth::user()->role == ("superadmin"||"admin"))
               <th>Action</th>
               @endif
             </tr>
@@ -38,7 +38,7 @@
                 <td>{{ $vehicle->status }}</td>
                 <td>{{ $vehicle->owners->name }}</td>
                 <td>{{ $vehicle->locations->location }}</td>
-                @if(\Auth::user()->role == "superadmin")
+                @if(\Auth::user()->role == ("superadmin"||"admin"))
                 <td>
                   <button class="btn btn-sm btn-inverse-primary dropdown-toggle" type="button" data-toggle="dropdown"></button>
                   <div class="dropdown-menu">

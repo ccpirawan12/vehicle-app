@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title')
 @section('content-header', 'Drivers')
-@if(\Auth::user()->role == "superadmin")
+@if(\Auth::user()->role == ("superadmin"||"admin"))
 @section('content-action')
 <a href="{{route('drivers.create')}}"class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
   <i class="mdi mdi-plus-circle"></i>Add Data</a>
@@ -22,7 +22,7 @@
               <th>License Number</th>
               <th>Phone</th>
               <th>Vehicle</th>
-              @if(\Auth::user()->role == "superadmin")
+              @if(\Auth::user()->role == ("superadmin"||"admin"))
               <th>Action</th>
               @endif
             </tr>
@@ -36,7 +36,7 @@
               <td>{{ $driver->phone }}</td>
               <td>{{ $driver->vehicles->licensePlate }}</td>
               {{-- <td>{{ $driver->vehicleId }}</td> --}}
-              @if(\Auth::user()->role == "superadmin")
+              @if(\Auth::user()->role == ("superadmin"||"admin"))
               <td>
                 <div>
                   <form onsubmit="return confirm('Apakah Anda Yakin?');"

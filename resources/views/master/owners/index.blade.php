@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title')
 @section('content-header', 'Vehicle Owners')
-@if(\Auth::user()->role == "superadmin")
+@if(\Auth::user()->role == ("superadmin"||"admin"))
 @section('content-action')
 <a href="{{route('owners.create')}}"class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
   <i class="mdi mdi-plus-circle"></i>Add Data</a>
@@ -20,7 +20,7 @@
               {{-- <th>No.</th> --}}
               <th>Name</th>
               <th>Contact Info</th>
-              @if(\Auth::user()->role == "superadmin")
+              @if(\Auth::user()->role == ("superadmin"||"admin"))
               <th>Action</th>
               @endif
             </tr>
@@ -31,7 +31,7 @@
                   {{-- <td>{{ $loop->iteration }}</td> --}}
                   <td>{{ $owner->name }}</td>
                   <td>{{ $owner->contactInfo }}</td>
-                  @if(\Auth::user()->role == "superadmin")
+                  @if(\Auth::user()->role == ("superadmin"||"admin"))
                   <td>
                     <div>
                       <form onsubmit="return confirm('Apakah Anda Yakin?');"

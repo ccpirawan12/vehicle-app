@@ -3,20 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class VehicleSpecification extends Model
+class RoutineCheck extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'vehicleId',
-        'licenseName',
-        'type',
-        'brand',
-        'chassisNumber',
-        'engineNumber',
+        'checkDate',
+        'status',
     ];
 
     public function vehicles(): BelongsTo

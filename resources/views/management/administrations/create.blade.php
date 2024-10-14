@@ -10,7 +10,7 @@
   @csrf
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Create New administration Details</h4>
+        <h4 class="card-title">Create New Administration Details</h4>
         <p class="card-description">Insert new administration details</p>
 
         <div class="forms-sample" >
@@ -18,42 +18,45 @@
             <label for="vehicleId">Vehicle</label>
             <select id="vehicleId" type="text" name="vehicleId"
                 class="form-control">
-                {{-- @foreach ($vehicles as $item)
+                @foreach ($vehicles as $item)
                     <option value="{{ $item->id }}">{{ $item->licensePlate }}</option>
-                @endforeach --}}
+                @endforeach
                 <option value="vehicle"></option>
             </select>
           </div>
           <div class="form-group">
-            <label for="administrationData">administration Data</label>
-            <input type="text" class="form-control" id="administrationData" placeholder="administration Data" name="administrationData" 
-              required autofocus autocomplete="administrationData" />
+            <label for="administrationDate">Administration Date</label>
+            <input type="date" class="form-control" id="administrationDate" placeholder="administration Date" name="administrationDate" 
+              required autofocus autocomplete="administrationDate" />
           </div>
           <div class="form-group">
-            <label for="description">description</label>
+            <label for="description">Description</label>
             <input type="text" class="form-control" id="description" placeholder="description" name="description" 
             required autofocus autocomplete="description" />
           </div>
           <div class="form-group">
-            <label for="cost">cost</label>
+            <label for="cost">Cost</label>
             <input type="text" class="form-control" id="cost" placeholder="cost" name="cost"
             required autofocus autocomplete="cost" />
           </div>
         </div>
       </div>
     </div>
+    {{-- Details --}}
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Create New administration Details</h4>
         <p class="card-description">Insert new administration Details</p>
         <div class="forms-sample">
           <div class="form-group">
-            <label for="administrationCategory">administrationCategory</label>
-            <input type="text" class="form-control" id="administrationCategory" name="administrationCategory" placeholder="administrationCategory" />
+            <label for="administrativeCategory">Administrative Category</label>
+            <input type="text" class="form-control" id="administrativeCategory" name="administrativeCategory" placeholder="administrativeCategory" 
+            required autofocus autocomplete="administrativeCategory" s/>
           </div>
           <div class="form-group">
             <label for="nextAdministration">nextAdministration</label>
-            <input type="text" class="form-control" id="nextAdministration" name="nextAdministration" placeholder="nextAdministration" />
+            <input type="date" class="form-control" id="nextAdministration" name="nextAdministration" placeholder="nextAdministration" 
+            required autofocus autocomplete="nextAdministration" />
           </div>
         </div>
       </div>
@@ -65,4 +68,6 @@
       </div>
     </div>
   </form>
+
+  @include('layouts.partial.cost_script')
   @endsection

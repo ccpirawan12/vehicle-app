@@ -18,30 +18,31 @@
             <label for="vehicleId">Vehicle</label>
             <select id="vehicleId" type="text" name="vehicleId"
                 class="form-control">
-                {{-- @foreach ($vehicles as $item)
+                @foreach ($vehicles as $item)
                     <option value="{{ $item->id }}">{{ $item->licensePlate }}</option>
-                @endforeach --}}
+                @endforeach
                 <option value="vehicle"></option>
             </select>
           </div>
           <div class="form-group">
-            <label for="maintenanceData">Maintenance Data</label>
-            <input type="text" class="form-control" id="maintenanceData" placeholder="Maintenance Data" name="maintenanceData" 
-              required autofocus autocomplete="maintenanceData" />
+            <label for="maintenanceDate">Maintenance Date</label>
+            <input type="date" class="form-control" id="maintenanceDate" placeholder="Maintenance Date" name="maintenanceDate" 
+              required autofocus autocomplete="maintenanceDate" />
           </div>
           <div class="form-group">
-            <label for="description">description</label>
+            <label for="description">Description</label>
             <input type="text" class="form-control" id="description" placeholder="description" name="description" 
             required autofocus autocomplete="description" />
           </div>
           <div class="form-group">
-            <label for="cost">cost</label>
+            <label for="cost">Cost</label>
             <input type="text" class="form-control" id="cost" placeholder="cost" name="cost"
             required autofocus autocomplete="cost" />
           </div>
         </div>
       </div>
     </div>
+    {{-- Details --}}
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Create New maintenance Details</h4>
@@ -49,11 +50,13 @@
         <div class="forms-sample">
           <div class="form-group">
             <label for="workshop">Workshop</label>
-            <input type="text" class="form-control" id="workshop" name="workshop" placeholder="Workshop" />
+            <input type="text" class="form-control" id="workshop" name="workshop" placeholder="Workshop" 
+            required autofocus autocomplete="workshop"/>
           </div>
           <div class="form-group">
             <label for="nextMaintenance">nextMaintenance</label>
-            <input type="text" class="form-control" id="nextMaintenance" name="nextMaintenance" placeholder="nextMaintenance" />
+            <input type="date" class="form-control" id="nextMaintenance" name="nextMaintenance" placeholder="nextMaintenance" 
+            required autofocus autocomplete="nextMaintenance" />
           </div>
         </div>
       </div>
@@ -65,4 +68,6 @@
       </div>
     </div>
   </form>
+
+  @include('layouts.partial.cost_script')
   @endsection
