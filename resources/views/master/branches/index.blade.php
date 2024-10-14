@@ -38,11 +38,13 @@
                           class="btn btn-sm btn-inverse-success">
                           <i class="mdi mdi-table-edit" ></i>
                         </a>
+                        @if(\Auth::user()->role == ("superadmin"))
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-inverse-danger" type="submit">
                           <i class="mdi mdi-delete-forever" ></i>
                         </button>
+                        @endif
                       </form>
                     </div>
                   </td>

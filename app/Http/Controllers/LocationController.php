@@ -94,6 +94,8 @@ class LocationController extends Controller
     {
         $locations = Location::findOrFail($id);
 
+        // dd($locations->id);
+
         $locations->delete();
 
         return redirect()->route('branches.index');

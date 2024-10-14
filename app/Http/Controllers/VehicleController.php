@@ -162,6 +162,8 @@ class VehicleController extends Controller
         $contract = Contract::where("vehicleId",$vehicle_id)->first();
         $routine = RoutineCheck::where("vehicleId",$vehicle_id)->first();
         $maintenance = Maintenance::where("vehicleId",$vehicle_id)->first();
+        $driver = Driver::where("vehicleId",$vehicle_id)->first();
+        // dd($contract);
         if (!empty($maintenance)) {
             $maintenance_id = $maintenance->id;
         }
@@ -172,24 +174,27 @@ class VehicleController extends Controller
         } 
         
         $vehicle->delete();
+        $vehicle_specifications     = VehicleSpecification::where("vehicleId",$vehicle_id)->delete();
         
-        // vehicleId = 19 test
+        // Vehicle table relations delete
         if(!empty($administration)){
             $administration = $administration->delete();
             $administration_detail     = AdministrationsDetail::where("administrationId",$administration_id)->delete();
-            // dd($administration_detail);
         }
-
         if(!empty($maintenance)){
             $maintenance = $maintenance->delete();
             $maintenance_detail     = MaintenanceDetail::where("maintenance_id",$maintenance_id)->delete();
         }
-        $vehicle_specifications     = VehicleSpecification::where("vehicleId",$vehicle_id)->delete();
         if(!empty($contract)){
             $contract = $contract->delete();
         }
         if(!empty($routine)){
             $routine = $routine->delete();
+        }
+
+        // WATCHOUT! Driver Will also be deleted
+        if(!empty($driver)){
+            $driver = $driver->delete();
         }
 
 

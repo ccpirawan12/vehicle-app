@@ -53,11 +53,13 @@
                       Edit
                     </a>
                     <div role="separator" class="dropdown-divider"></div>
-                      @csrf
+                    @if(\Auth::user()->role == ("superadmin"))  
+                    @csrf
                       @method('DELETE')
                       <button type="submit"
                           class="dropdown-item mdi mdi-delete-forever text-danger"> Delete
                       </button>
+                    @endif
                     </form>
                   </div>
                 </td>

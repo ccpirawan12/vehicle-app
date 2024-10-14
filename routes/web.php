@@ -52,11 +52,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('drivers', DriverController::class)
             ->only(['create', 'store', 'edit', 'update', 'destroy']);
         Route::resource('branches', LocationController::class)
-            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+            ->only(['create', 'store', 'edit', 'update']);
         Route::resource('owners', OwnerController::class)
             ->only(['create', 'store', 'edit', 'update', 'destroy']);
         Route::resource('vehicles', VehicleController::class)
-            ->only(['create', 'store', 'edit', 'update', 'destroy', 'show']);
+            ->only(['create', 'store', 'edit', 'update', 'show']);
         
         //  Management Routes
         Route::resource('contracts', ContractController::class)
@@ -71,6 +71,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Superadmin
     Route::group(['middleware' => 'superadmin'], function () {
+        // Crucial Delete Relation Route
+        Route::resource('branches', LocationController::class)
+        ->only(['destroy']);
+        Route::resource('vehicles', VehicleController::class)
+        ->only(['destroy']);
+        
         // Master Admin
         Route::resource('users', UserController::class)
         ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
