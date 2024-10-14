@@ -6,8 +6,12 @@ use App\Models\Location;
 use App\Models\Owner;
 use App\Models\Contract;
 use App\Models\Vehicle;
-use App\Models\RoutineCheck;
 use App\Models\VehicleSpecification;
+use App\Models\RoutineCheck;
+use App\Models\Maintenance;
+use App\Models\MaintenanceDetail;
+use App\Models\Administration;
+use App\Models\AdministrationsDetail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -157,9 +161,29 @@ class VehicleController extends Controller
         $vehicle_id = $vehicle->id;
         $contract = Contract::where("vehicleId",$vehicle_id)->first();
         $routine = RoutineCheck::where("vehicleId",$vehicle_id)->first();
+        $maintenance = Maintenance::where("vehicleId",$vehicle_id)->first();
+        if (!empty($maintenance)) {
+            $maintenance_id = $maintenance->id;
+        }
 
+        $administration = Administration::where("vehicleId",$vehicle_id)->first();
+        if (!empty($administration)) {
+            $administration_id = $administration->id;
+        } 
+        
         $vehicle->delete();
+        
+        // vehicleId = 19 test
+        if(!empty($administration)){
+            $administration = $administration->delete();
+            $administration_detail     = AdministrationsDetail::where("administrationId",$administration_id)->delete();
+            // dd($administration_detail);
+        }
 
+        if(!empty($maintenance)){
+            $maintenance = $maintenance->delete();
+            $maintenance_detail     = MaintenanceDetail::where("maintenance_id",$maintenance_id)->delete();
+        }
         $vehicle_specifications     = VehicleSpecification::where("vehicleId",$vehicle_id)->delete();
         if(!empty($contract)){
             $contract = $contract->delete();
